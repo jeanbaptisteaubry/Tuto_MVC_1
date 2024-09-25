@@ -183,6 +183,12 @@ while(!$test) {
                 //Création d'une table Table(id, champ1, champ2)
                 $rqt = "CREATE TABLE $BDD.Table (id INT PRIMARY KEY, champ1 VARCHAR(255), champ2 VARCHAR(255));";
                 $instancePdo->query($rqt);
+                echo "Table TABLE créée.\n";
+
+                $rqt = "CREATE TABLE $BDD.utilisateur (id INT PRIMARY KEY, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
+                $instancePdo->query($rqt);
+                echo "Table UTILISATEUR créée.\n";
+
                 $test = true;
             } catch (PDOException $e) {
                 echo $e->getMessage();
@@ -195,9 +201,47 @@ while(!$test) {
                 $instancePdo = new PDO('mysql:host=' . $IPBDD . ';dbname=' . $BDD . ';charset=UTF8', $USERBDD, $MDPBDD,
                     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
                 echo "Connecté en tant que $USERBDD\n";
+                //test si la table table existe
+                $rqt = "SELECT * FROM $BDD.Table;";
+                $result = $instancePdo->query($rqt);
+                $row = $result->fetch();
+                if(!$row)
+                {
+                    echo "La table Table n'existe pas.\n";
+
+                }
+                else
+                {
+                    echo "La table Table existe.\n";
+                    //on drope la table
+                    $rqt = "DROP TABLE $BDD.Table;";
+                    $instancePdo->query($rqt);
+                    echo "Table Table supprimée.\n";
+                }
                 $rqt = "CREATE TABLE $BDD.Table (id INT PRIMARY KEY, champ1 VARCHAR(255), champ2 VARCHAR(255));";
                 $instancePdo->query($rqt);
+                echo "Table TABLE créée.\n";
 
+                //test si la table utilisateur existe
+                $rqt = "SELECT * FROM $BDD.utilisateur;";
+                $result = $instancePdo->query($rqt);
+                $row = $result->fetch();
+                if(!$row)
+                {
+                    echo "La table Utilisateur n'existe pas.\n";
+
+                }
+                else
+                {
+                    echo "La table Utilisateur existe.\n";
+                    //on drope la table
+                    $rqt = "DROP TABLE $BDD.utilisateur;";
+                    $instancePdo->query($rqt);
+                    echo "Table Utilisateur supprimée.\n";
+                }
+                $rqt = "CREATE TABLE $BDD.utilisateur (id INT PRIMARY KEY, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
+                $instancePdo->query($rqt);
+                echo "Table UTILISATEUR créée.\n";
                 $test = true;
             } catch (PDOException $e) {
                 echo $e->getMessage();

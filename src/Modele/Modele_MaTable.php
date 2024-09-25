@@ -34,4 +34,40 @@ select *
         return $reponse;
     }
 
+    public static function MaTable_Delete(mixed $id)
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare('
+        delete from `table` where id=:id');
+        $reponse = $requetePreparee->execute(array(
+            "id" => $id
+        ));
+        return $reponse;
+    }
+
+    public static function MaTable_SelectById(mixed $id)
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare('
+        select * from `table` where id=:id');
+        $reponse = $requetePreparee->execute(array(
+            "id" => $id
+        ));
+        $tableauReponse = $requetePreparee->fetch(PDO::FETCH_ASSOC);
+        return $tableauReponse;
+    }
+
+    public static function MaTable_Update(mixed $id, mixed $champ1, mixed $champ2)
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare('
+        update `table` set champ1=:champ1, champ2=:champ2 where id=:id');
+        $reponse = $requetePreparee->execute(array(
+            "id" => $id,
+            "champ1" => $champ1,
+            "champ2" => $champ2
+        ));
+        return $reponse;
+    }
+
 }

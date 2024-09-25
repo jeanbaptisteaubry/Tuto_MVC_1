@@ -4,7 +4,7 @@ namespace App\Vue;
 
 use App\Utilitaire\Vue_Composant;
 
-class Vue_AccueilCaseMaTable extends Vue_Composant
+class Vue_AccueilMaTable extends Vue_Composant
 {
     private string $msgErreur;
     private array $listeDonnee;
@@ -34,7 +34,13 @@ class Vue_AccueilCaseMaTable extends Vue_Composant
         }
         foreach ($this->listeDonnee as $item) {
             $str.="
-            <tr><td>$item->id</td><td>$item->champ1</td><td>$item->champ2</td> </tr>
+            <tr><td><a href='./index.php?case=maTable&action=modifier&id=$item[id]'  > $item[id]</a></td><td>$item[champ1]</td><td>$item[champ2]</td><td>
+            <form>
+                <input type='hidden' name='case' value ='maTable'>
+                <input type='hidden' name='id' value ='$item[id]'>
+                <button type='submit' name = 'action' value='supprimer'> Supprimer</button>
+            </form>
+</td> </tr>
             ";
      }
         $str.="</table>

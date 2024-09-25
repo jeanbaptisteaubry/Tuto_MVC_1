@@ -38,7 +38,7 @@ class Modele_Utilisateur
         $reponse = $requetePreparee->execute(array(
             "id" => $id
         ));
-        $tableauReponse = $requetePreparee->fetchAll();
+        $tableauReponse = $requetePreparee->fetch();
         return $tableauReponse;
     }
 

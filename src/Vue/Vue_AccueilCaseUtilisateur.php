@@ -28,22 +28,30 @@ class Vue_AccueilCaseUtilisateur extends Vue_Composant
                     <th>nom</th>
                     <th>prenom</th>
                     <th>mot de passe</th>
+                    <th>action</th>
                 </tr>
             ";
         if($this->listeUtilisateur==null)
         {
             $str.="
-            <tr><td colspan='4'>table vide</td> </tr>
+            <tr><td colspan='5'>table vide</td> </tr>
             ";
         }
         foreach ($this->listeUtilisateur as $item) {
             $str.="
             <tr>
-            <td>$item[id]</td
-            <td>$item[nom]</td>
-            <td>$item[prenom]</td>
-            <td>$item[motDePasse]</td>
-             </tr>
+                <td><a href='index.php?case=utilisateur&action=modifier&id=$item[id]'>  $item[id]</a></td>
+                <td>$item[nom]</td>
+                <td>$item[prenom]</td>
+                <td>$item[motDePasse]</td>
+                <td>
+                    <form method='post'>
+                        <input type='hidden' name='case' value ='utilisateur'>
+                        <input type='hidden' name='id' value ='$item[id]'>
+                        <button type='submit' name = 'action' value='supprimer'> Supprimer</button>
+                    </form>
+                </td>
+            </tr>
             ";
         }
         $str.="</table>

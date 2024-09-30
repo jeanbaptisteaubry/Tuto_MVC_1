@@ -1,4 +1,5 @@
 <?php
+@session_start();
 include_once "vendor/autoload.php";
 
 use App\Utilitaire\Vue;
@@ -15,21 +16,42 @@ if (isset($_REQUEST["action"]))
 else
     $action = "defaut";
 
-$Vue = new Vue();
-switch ($case) {
-    case "A":
-    case "defaut":
-        include ".\src\Controleur\caseA.php";
-        break;
-    case "B":
-        include ".\src\Controleur\caseB.php";
-        break;
-    case "maTable":
-        include ".\src\Controleur\caseMaTable.php";
-        break;
-    case "utilisateur":
-        include ".\src\Controleur\caseUtilisateur.php";
-        break;
+if (isset($_SESSION["utilisateur"])) {
+    $typeUtilisateur = "connecté";
+} else {
+    $typeUtilisateur = "non connecté";
+}
 
+
+$Vue = new Vue();
+switch ($typeUtilisateur) {
+    case "non connecté":
+        switch ($case) {
+            case "A":
+            case "defaut":
+                include ".\src\Controleur\caseA.php";
+                break;
+            case "B":
+                include ".\src\Controleur\caseB.php";
+                break;
+            case "maTable":
+                include ".\src\Controleur\caseMaTable.php";
+                break;
+            case "utilisateur":
+                include ".\src\Controleur\caseUtilisateur.php";
+                break;
+            case "connexion" :
+                include ".\src\Controleur\caseConnexion.php";
+                break;
+
+        }
+        break;
+    case "non connecté":
+        switch ($case) {
+            case "connexion" :
+                include ".\src\Controleur\caseConnexion.php";
+                break;
+                break;
+        }
 }
 $Vue->afficher();

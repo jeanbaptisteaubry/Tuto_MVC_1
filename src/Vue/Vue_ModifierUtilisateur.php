@@ -24,6 +24,8 @@ class Vue_ModifierUtilisateur extends Vue_Composant
         <form>
             <table> 
                 <tr> <td>id</td><td> ".$this->data["id"]." </td> </tr>
+                <tr>    <td>pseudo</td><td> <input type='text' name='pseudo' value='{$this->data["pseudo"]}'> </td></tr>
+            
                  <tr>    <td>nom</td><td> <input type='text' name='nom' value='{$this->data["nom"]}'> </td></tr>
                 <tr>     <td>prenom</td> <td> <input type='text' name='prenom' value='{$this->data["prenom"]}'> </td></tr>
                 <tr>     <td>mot de passe</td> <td> <input type='text' name='motDePasse' value='{$this->data["motDePasse"]}'> </td></tr>

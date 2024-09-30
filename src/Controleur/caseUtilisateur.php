@@ -12,7 +12,7 @@ switch ($action) {
         $Vue->addToCorps(new \App\Vue\Vue_AjouterUtilisateur());
         break;
     case "enregistrerAjouter":
-        \App\Modele\Modele_Utilisateur::Utilisateur_Insert($_REQUEST["nomUtilisateur"], $_REQUEST["prenomUtilisateur"], $_REQUEST["motDePasse"]);
+        \App\Modele\Modele_Utilisateur::Utilisateur_Insert($_REQUEST["pseudo"], $_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["motDePasse"]);
         $data = \App\Modele\Modele_Utilisateur::Utilisateur_Select();
         $Vue->addToCorps(new \App\Vue\Vue_AccueilCaseUtilisateur($data));
         break;
@@ -21,7 +21,7 @@ switch ($action) {
         $Vue->addToCorps(new \App\Vue\Vue_ModifierUtilisateur($data));
         break;
     case "enregistrerModifier":
-        \App\Modele\Modele_Utilisateur::Utilisateur_Update($_REQUEST["id"], $_REQUEST["nomUtilisateur"], $_REQUEST["prenomUtilisateur"], $_REQUEST["motDePasse"]);
+        \App\Modele\Modele_Utilisateur::Utilisateur_Update($_REQUEST["id"], $_REQUEST["pseudo"], $_REQUEST["nom"], $_REQUEST["prenom"], $_REQUEST["motDePasse"]);
         $data = \App\Modele\Modele_Utilisateur::Utilisateur_Select();
         $Vue->addToCorps(new \App\Vue\Vue_AccueilCaseUtilisateur($data));
         break;

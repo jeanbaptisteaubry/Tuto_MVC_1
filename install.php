@@ -198,7 +198,7 @@ try {
                     echo "Table créée.\n";
 
                     //Création d'une table utilisateur id, nom, prenom, motDePasse
-                    $rqt = "CREATE TABLE $BDD.utilisateur (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
+                    $rqt = "CREATE TABLE $BDD.utilisateur (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, pseudo varchar(255), nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
                     $instancePdo->query($rqt);
                     $test = true;
                     echo "Table utilisateur créée.\n";

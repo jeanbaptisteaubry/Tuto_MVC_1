@@ -22,8 +22,9 @@ class Vue_AjouterUtilisateur extends Vue_Composant
         <form>
             <table> 
                 <tr> <td>id</td><td>Automatique !</td> </tr>
-                 <tr>    <td>nom</td><td> <input type='text' name='nomUtilisateur'> </td></tr>
-                <tr>     <td>prenom</td> <td> <input type='text' name='prenomUtilisateur'> </td></tr>
+                <tr>    <td>pseudo</td><td> <input type='text' name='pseudo'> </td></tr>
+                 <tr>    <td>nom</td><td> <input type='text' name='nom'> </td></tr>
+                <tr>     <td>prenom</td> <td> <input type='text' name='prenom'> </td></tr>
                 <tr>     <td>mot de passe</td> <td> <input type='text' name='motDePasse'> </td></tr>
             </table>
             <input type='hidden' name='case' value ='utilisateur'>

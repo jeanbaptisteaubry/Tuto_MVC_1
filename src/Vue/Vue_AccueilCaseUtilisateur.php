@@ -25,6 +25,7 @@ class Vue_AccueilCaseUtilisateur extends Vue_Composant
             <table> 
                 <tr>
                     <th>id</th>
+                    <th>pseudo</th>
                     <th>nom</th>
                     <th>prenom</th>
                     <th>mot de passe</th>
@@ -41,6 +42,7 @@ class Vue_AccueilCaseUtilisateur extends Vue_Composant
             $str.="
             <tr>
                 <td><a href='index.php?case=utilisateur&action=modifier&id=$item[id]'>  $item[id]</a></td>
+                <td>$item[pseudo]</td>
                 <td>$item[nom]</td>
                 <td>$item[prenom]</td>
                 <td>$item[motDePasse]</td>

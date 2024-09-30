@@ -17,12 +17,13 @@ class Modele_Utilisateur
         return $tableauReponse;
     }
 
-    public static function Utilisateur_Insert(mixed $nomUtilisateur, mixed $prenomUtilisateur, mixed $motDePasse)
+    public static function Utilisateur_Insert(mixed $pseudo, mixed $nomUtilisateur, mixed $prenomUtilisateur, mixed $motDePasse)
     {
         $connexionPDO = Singleton_ConnexionPDO::getInstance();
-        $sql = "INSERT INTO utilisateur (nom, prenom, motDePasse) VALUES (:nomUtilisateur, :prenomUtilisateur, :motDePasse)";
+        $sql = "INSERT INTO utilisateur (pseudo, nom, prenom, motDePasse) VALUES (:pseudoUtilisateur, :nomUtilisateur, :prenomUtilisateur, :motDePasse)";
         $requetePreparee = $connexionPDO->prepare($sql);
         $reponse = $requetePreparee->execute(array(
+            "pseudoUtilisateur" => $pseudo,
             "nomUtilisateur" => $nomUtilisateur,
             "prenomUtilisateur" => $prenomUtilisateur,
             "motDePasse" => $motDePasse
@@ -42,12 +43,13 @@ class Modele_Utilisateur
         return $tableauReponse;
     }
 
-    public static function Utilisateur_Update(mixed $id, mixed $nomUtilisateur, mixed $prenomUtilisateur, mixed $motDePasse)
+    public static function Utilisateur_Update(mixed $id, mixed $pseudo, mixed $nomUtilisateur, mixed $prenomUtilisateur, mixed $motDePasse)
     {
         $connexionPDO = Singleton_ConnexionPDO::getInstance();
-        $sql = "UPDATE utilisateur SET nomUtilisateur = :nomUtilisateur, prenomUtilisateur = :prenomUtilisateur, motDePasse = :motDePasse WHERE id = :id";
+        $sql = "UPDATE utilisateur SET pseudo = :pseudoUtilisateur, nom = :nomUtilisateur, prenom = :prenomUtilisateur, motDePasse = :motDePasse WHERE id = :id";
         $requetePreparee = $connexionPDO->prepare($sql);
         $reponse = $requetePreparee->execute(array(
+            "pseudoUtilisateur" => $pseudo,
             "id" => $id,
             "nomUtilisateur" => $nomUtilisateur,
             "prenomUtilisateur" => $prenomUtilisateur,
@@ -65,5 +67,17 @@ class Modele_Utilisateur
             "id" => $id
         ));
         return $reponse;
+    }
+
+    public static function Utilisateur_SelectParPseudo(mixed $pseudo)
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $sql = "SELECT * FROM utilisateur WHERE pseudo = :pseudo";
+        $requetePreparee = $connexionPDO->prepare($sql);
+        $reponse = $requetePreparee->execute(array(
+            "pseudo" => $pseudo
+        ));
+        $tableauReponse = $requetePreparee->fetchAll();
+        return $tableauReponse;
     }
 }

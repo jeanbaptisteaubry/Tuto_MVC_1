@@ -10,11 +10,12 @@ switch ($action) {
         if(isset($_REQUEST["pseudo"])) {
             $pseudo = $_REQUEST["pseudo"];
             $data = \App\Modele\Modele_Utilisateur::Utilisateur_SelectParPseudo($pseudo);
-            if (count($data) == 1) {
+            if ($data !=null) {
                 if (isset($_REQUEST["motDePasse"])) {
-                    if ($data[0]["motDePasse"] == $_REQUEST["motDePasse"]) {
-                        $_SESSION["idUtilisateur"] = $data[0]["id"];
-                        $Vue->addToCorps(new \App\Vue\Vue_BienvenueConnexion($pseudo));
+                    if ($data["motDePasse"] == $_REQUEST["motDePasse"]) {
+                        $_SESSION["idUtilisateur"] = $data["id"];
+                        $Vue->setMenu(new App\Vue\Vue_Menu_Connexion());
+                        $Vue->addToCorps(new \App\Vue\Vue_BienvenueConnexion($data));
                     } else {
                         $Vue->addToCorps(new \App\Vue\Vue_Connexion("Mot de passe incorrect"));
                     }

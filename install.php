@@ -246,10 +246,6 @@ try {
                         echo "Table utilisateur supprimée.\n";
                     }
 
-                    $rqt = "CREATE TABLE $BDD.utilisateur (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, nom VARCHAR(255), prenom VARCHAR(255), motDePasse VARCHAR(255));";
-                    $instancePdo->query($rqt);
-                    echo "Table utilisateur créée.\n";
-
 
                     $test = true;
                 } catch (PDOException $e) {
@@ -259,6 +255,24 @@ try {
                 }
             }
         }
+    }
+
+    //On va ajouter un utilisateur root
+    $rqt = "SELECT * FROM $BDD.utilisateur WHERE pseudo = 'root'";
+    $result = $instancePdo->query($rqt);
+    $row = $result->fetch();
+    if ($row) {
+        echo "L'utilisateur root existe déjà.\n";
+        //On va changer le mot de passe
+        $rqt = "update $BDD.utilisateur set motDePasse = 'secret' where pseudo = 'root'";
+        $result = $instancePdo->query($rqt);
+        echo "Mot de passe changé pour root.\n";
+    } else {
+        //on va le créer !
+        $rqu = "insert into $BDD.utilisateur (pseudo, nom, prenom, motDePasse) values ('root','root','root', 'secret')";
+        $result = $instancePdo->query($rqu);
+        echo "Utilisateur root/secret créé.\n";
+
     }
 
 # Chemin vers fichier texte

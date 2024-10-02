@@ -16,7 +16,7 @@ class Vue_Menu_B extends Vue_Composant
                 <li><a href='?case=B'>****cas B****</a></li> 
                 <li><a href='?case=maTable'>Ma Table</a></li>    
                 <li><a href='?case=utilisateur'>Utilisateur</a></li>  
-                <li><a href='?case=connexion'>Se connecter</a></li>      
+                <li><a href='?case=connexion&action=seDeconnecter'>Se Déconnecter</a></li>       
                    </ul>
             </nav> 
 ";

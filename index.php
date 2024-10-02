@@ -16,7 +16,7 @@ if (isset($_REQUEST["action"]))
 else
     $action = "defaut";
 
-if (isset($_SESSION["utilisateur"])) {
+if (isset($_SESSION["idUtilisateur"])) {
     $typeUtilisateur = "connecté";
 } else {
     $typeUtilisateur = "non connecté";
@@ -25,7 +25,7 @@ if (isset($_SESSION["utilisateur"])) {
 
 $Vue = new Vue();
 switch ($typeUtilisateur) {
-    case "non connecté":
+    case "connecté":
         switch ($case) {
             case "A":
             case "defaut":
@@ -48,6 +48,7 @@ switch ($typeUtilisateur) {
         break;
     case "non connecté":
         switch ($case) {
+            case "defaut":
             case "connexion" :
                 include ".\src\Controleur\caseConnexion.php";
                 break;

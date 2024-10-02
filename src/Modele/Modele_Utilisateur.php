@@ -77,7 +77,7 @@ class Modele_Utilisateur
         $reponse = $requetePreparee->execute(array(
             "pseudo" => $pseudo
         ));
-        $tableauReponse = $requetePreparee->fetchAll();
+        $tableauReponse = $requetePreparee->fetch();
         return $tableauReponse;
     }
 }

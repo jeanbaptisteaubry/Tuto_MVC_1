@@ -1,0 +1,11 @@
+@startuml
+scale 600 width
+
+[*] -> defaut
+defaut --> pageSuivante : clicSuivant
+defaut --> [*] : vers case 2
+pageSuivante --> pageAccueil : retourAccueil
+pageSuivante --> [*] : vers case 2
+pageAccueil--> pageSuivante : clicSuivant
+pageAccueil --> [*] : vers case 2
+@enduml

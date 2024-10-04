@@ -24,5 +24,8 @@ switch ($case) {
     case "B":
         include ".\src\Controleur\caseB.php";
         break;
+    case "IMC":
+        include ".\src\Controleur\caseIMC.php";
+        break;
 }
 $Vue->afficher();
